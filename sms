@@ -1,0 +1,8 @@
+<?php 
+
+require_once './vendor/autoload.php';
+
+if($argv[1] == 'list')
+    (new \Sms\Commands\ListCommand())->execute([]);
+if($argv[1] == 'send')
+    (new \Sms\Commands\SendCommand())->execute([$argv[2], $argv[3], $argv[4]]);

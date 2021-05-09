@@ -1,0 +1,16 @@
+{
+    "name": "ali/sms-app",
+    "minimum-stability": "dev",
+    "require": {
+        "myclabs/php-enum": "dev-master",
+        "guzzlehttp/guzzle": "7.4.x-dev"
+    },
+    "autoload": {
+        "psr-4":{
+            "Sms\\":"./src"
+        }
+    },
+    "autoload-dev":{
+        "psr-4":{}
+    }
+}
