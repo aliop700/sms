@@ -2,24 +2,19 @@
 
 namespace Sms\Factory;
 
-use Sms\Enums\Provider;
-use Sms\Exceptions\SmsProviderNotFoundException;
-use Sms\contracts\SmsProvider;
+use Sms\Constants\SMS;
+use Sms\Contracts\SmsProvider;
+use Sms\Exceptions\SmsProviderNotSupportedException;
+use Sms\Providers\D7SMSProvider;
 
 class SmsProviderFactory 
 {
     public static function makeProvider(string $provider): SmsProvider
     {
-        $smsProvider = null;
-
-        switch($provider) {
-            case 'D7SMS':
-                $smsProvider = new \Sms\providers\D7SMSProvider;
-                break;
-            default:
-                throw new SmsProviderNotSupportedException;
+        if (!in_array($provider, SMS::SUPPORTED_PROVIDERS)) {
+            throw new SmsProviderNotSupportedException("SMS provider $provider is not supported", 400);
         }
 
-        return $smsProvider;
+        return new D7SMSProvider();
     } 
 }

@@ -1,8 +1,8 @@
 <?php 
 
-namespace Sms\commands;
+namespace Sms\Commands;
 
-use Sms\contracts\Command;
+use Sms\Contracts\Command;
 use Sms\Enums\Provider;
 
 class ListCommand implements Command 

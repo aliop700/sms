@@ -2,10 +2,9 @@
 
 namespace Sms\Exceptions;
 
-class SmsException extends \Exception
+use RuntimeException;
+
+class SmsException extends RuntimeException
 {
-   public static function fromFailedAuthentication()
-   {
-       return new static('Authentication Failed');
-   } 
+
 }
