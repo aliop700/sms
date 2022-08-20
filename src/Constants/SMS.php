@@ -2,6 +2,8 @@
 
 namespace Sms\Constants;
 
+use Sms\Providers\D7SMSProvider;
+
 /**
  * SMS class.
  *
@@ -10,7 +12,7 @@ namespace Sms\Constants;
 final class SMS
 {
     const SUPPORTED_PROVIDERS = [
-        'SMS'
+        'D7SMS' => D7SMSProvider::class
     ];
 
     /**

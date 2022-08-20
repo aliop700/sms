@@ -11,10 +11,10 @@ class SmsProviderFactory
 {
     public static function makeProvider(string $provider): SmsProvider
     {
-        if (!in_array($provider, SMS::SUPPORTED_PROVIDERS)) {
+        if (!isset(SMS::SUPPORTED_PROVIDERS[$provider])) {
             throw new SmsProviderNotSupportedException("SMS provider $provider is not supported", 400);
         }
 
-        return new D7SMSProvider();
+        return new SMS::SUPPORTED_PROVIDERS[$provider];
     } 
 }
