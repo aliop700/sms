@@ -1,0 +1,4 @@
+/vendor/
+.env
+/.vagrant
+.phpunit.result.cache
