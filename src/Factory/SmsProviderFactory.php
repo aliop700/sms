@@ -1,25 +1,27 @@
-<?php 
+<?php
 
 namespace Sms\Factory;
 
+use GuzzleHttp\Client;
+use Sms\Contracts\ProviderFactory;
+use Sms\Contracts\SmsProvider;
 use Sms\Enums\Provider;
-use Sms\Exceptions\SmsProviderNotFoundException;
-use Sms\contracts\SmsProvider;
+use Sms\Exceptions\SmsException;
 
-class SmsProviderFactory 
+class SmsProviderFactory implements ProviderFactory
 {
-    public static function makeProvider(string $provider): SmsProvider
+    /**
+     * @param $provider
+     * @return SmsProvider
+     */
+    public static function make($provider): SmsProvider
     {
-        $smsProvider = null;
-
-        switch($provider) {
-            case 'D7SMS':
-                $smsProvider = new \Sms\providers\D7SMSProvider;
-                break;
-            default:
-                throw new SmsProviderNotSupportedException;
+        if (!$provider instanceof Provider) {
+            throw new SmsException("Provider $provider must be an instance of ". Provider::class);
         }
 
-        return $smsProvider;
+        $className = '\\Sms'.'\\Providers\\'.ucfirst($provider) . 'Provider';
+
+        return new $className(new Client());
     } 
 }

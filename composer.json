@@ -3,7 +3,8 @@
     "minimum-stability": "dev",
     "require": {
         "myclabs/php-enum": "dev-master",
-        "guzzlehttp/guzzle": "7.4.x-dev"
+        "guzzlehttp/guzzle": "7.4.x-dev",
+        "saedyousef/dataobject": "dev-main"
     },
     "autoload": {
         "psr-4":{

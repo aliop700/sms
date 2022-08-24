@@ -1,6 +1,6 @@
 <?php 
 
-namespace Sms\contracts;
+namespace Sms\Contracts;
 
 interface Command 
 {

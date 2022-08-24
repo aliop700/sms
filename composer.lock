@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26d484bf677604689b9f0b3fb5cbb821",
+    "content-hash": "250a366d408b060b7e443ab8bddb21a4",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -514,6 +514,62 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "saedyousef/dataobject",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saedyousef/dataobject.git",
+                "reference": "b3a38f7a6749719e5ae2c918fd3045deba863057"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saedyousef/dataobject/zipball/b3a38f7a6749719e5ae2c918fd3045deba863057",
+                "reference": "b3a38f7a6749719e5ae2c918fd3045deba863057",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "8.5.x-dev"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SY\\DataObject\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Saed Yousef",
+                    "email": "saed.alzaben@gmail.com"
+                }
+            ],
+            "description": "PHP Data Object",
+            "keywords": [
+                "Data Transfer Object",
+                "data object",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/saedyousef/dataobject/issues",
+                "source": "https://github.com/saedyousef/dataobject/tree/v1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/saedyousef",
+                    "type": "github"
+                },
+                {
+                    "url": "https://ko-fi.com/saedyousef",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2022-08-24T06:29:11+00:00"
         }
     ],
     "packages-dev": [],
@@ -521,11 +577,12 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "myclabs/php-enum": 20,
-        "guzzlehttp/guzzle": 20
+        "guzzlehttp/guzzle": 20,
+        "saedyousef/dataobject": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

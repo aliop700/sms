@@ -2,7 +2,7 @@
 
 namespace Sms\Exceptions;
 
-class SmsProviderNotSupportedException extends \Exception
+class SmsProviderNotSupportedException extends SmsException
 {
     
 }
