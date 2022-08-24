@@ -10,6 +10,5 @@ if($argv[1] == 'list') {
 }
 
 if($argv[1] == 'send') {
-//print_r($argv);die;
     (new SendCommand())->execute([$argv[2], $argv[3], $argv[4]]);
 }
