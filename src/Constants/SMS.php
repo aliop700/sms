@@ -11,9 +11,6 @@ use Sms\Providers\D7SMSProvider;
  */
 final class SMS
 {
-    const SUPPORTED_PROVIDERS = [
-        'D7SMS' => D7SMSProvider::class
-    ];
 
     /**
      * Prevent instantiation.

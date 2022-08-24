@@ -3,7 +3,7 @@
 namespace Sms;
 
 use Sms\Enums\Provider;
-use Sms\Factory\SmsProviderFactory2;
+use Sms\Factory\SmsProviderFactory;
 
 class SmsHandler
 {
@@ -13,9 +13,12 @@ class SmsHandler
      */
     protected $provider;
 
+    /**
+     * @param string $provider
+     */
     public function __construct(string $provider)
     {
-        $this->provider =  SmsProviderFactory2::makeProvider(Provider::from($provider));
+        $this->provider =  SmsProviderFactory::make(Provider::from($provider));
     }
 
     /**

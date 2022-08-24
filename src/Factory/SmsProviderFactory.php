@@ -1,20 +1,26 @@
-<?php 
+<?php
 
 namespace Sms\Factory;
 
-use Sms\Constants\SMS;
+use Sms\Enums\Provider;
 use Sms\Contracts\SmsProvider;
-use Sms\Exceptions\SmsProviderNotSupportedException;
-use Sms\Providers\D7SMSProvider;
+use Sms\Exceptions\SmsException;
+use Sms\Factory\Contracts\ProviderFactory;
 
-class SmsProviderFactory 
+class SmsProviderFactory implements ProviderFactory
 {
-    public static function makeProvider(string $provider): SmsProvider
+    /**
+     * @param $provider
+     * @return SmsProvider
+     */
+    public static function make($provider): SmsProvider
     {
-        if (!isset(SMS::SUPPORTED_PROVIDERS[$provider])) {
-            throw new SmsProviderNotSupportedException("SMS provider $provider is not supported", 400);
+        if (!$provider instanceof Provider) {
+            throw new SmsException("Provider $provider must be an instance of ". Provider::class);
         }
 
-        return new SMS::SUPPORTED_PROVIDERS[$provider];
+        $className = '\\Sms'.'\\Providers\\'.ucfirst($provider) . 'Provider';
+
+        return new $className;
     } 
 }
