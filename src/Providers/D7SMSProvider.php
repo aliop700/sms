@@ -49,6 +49,10 @@ class D7SMSProvider implements SmsProvider, Configurable
         if($response->getStatusCode() == 403) {
             throw new UnauthenticatedException("unauthenticated", 403);
         }
+
+        if ($response->getStatusCode() > 299 || $response->getStatusCode() < 200) {
+            throw new SmsException("Something went wrong", $response->getStatusCode());
+        }
     }
 
     /**
