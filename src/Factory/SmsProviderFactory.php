@@ -2,10 +2,11 @@
 
 namespace Sms\Factory;
 
-use Sms\Enums\Provider;
+use GuzzleHttp\Client;
+use Sms\Contracts\ProviderFactory;
 use Sms\Contracts\SmsProvider;
+use Sms\Enums\Provider;
 use Sms\Exceptions\SmsException;
-use Sms\Factory\Contracts\ProviderFactory;
 
 class SmsProviderFactory implements ProviderFactory
 {
@@ -21,6 +22,6 @@ class SmsProviderFactory implements ProviderFactory
 
         $className = '\\Sms'.'\\Providers\\'.ucfirst($provider) . 'Provider';
 
-        return new $className;
+        return new $className(new Client());
     } 
 }

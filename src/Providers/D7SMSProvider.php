@@ -4,21 +4,30 @@ namespace Sms\Providers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Sms\Constants\SMS;
+use Sms\Contracts\Configurable;
 use Sms\Contracts\SmsProvider;
 use Sms\Exceptions\SmsException;
 use Sms\Exceptions\UnauthenticatedException;
-use Sms\Support\Env;
 
-class D7SMSProvider implements SmsProvider
+class D7SMSProvider implements SmsProvider, Configurable
 {
-    protected $client;
+    /**
+     * @var Client
+     */
+    protected Client $client;
 
-    public function __construct()
+    /**
+     * @var SmsConfig
+     */
+    protected SmsConfig $config;
+
+    /**
+     * @param Client $client
+     */
+    public function __construct(Client $client)
     {
-        $this->client =  new Client();
+        $this->client =  $client;
     }
-
 
     /**
      * @param string $number
@@ -31,7 +40,7 @@ class D7SMSProvider implements SmsProvider
     {
         $data = $this->data(['to' => $number, 'content' => $message]);
 
-        $response = $this->client->request('POST', Env::get(SMS::ENDPOINT),[
+        $response = $this->client->request('POST', $this->config->endpoint_url,[
             'headers'     =>  $this->authenticationHeader(),
             'http_errors' => false,
             'json'        =>  $data
@@ -43,12 +52,22 @@ class D7SMSProvider implements SmsProvider
     }
 
     /**
+     * @param SmsConfig $config
+     * @return $this
+     */
+    public function setConfig(SmsConfig $config): self
+    {
+        $this->config = $config;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     private function authenticationHeader(): array
     {
         return [
-            'Authorization' =>  Env::get(SMS::TOKEN)
+            'Authorization' =>  $this->config->auth_token
         ];
     }
 
@@ -60,11 +79,11 @@ class D7SMSProvider implements SmsProvider
     {
         return [
             'to'        =>  $data['to'],
-            'from'      =>  Env::get(SMS::SENDER),
+            'from'      =>  $this->config->sender,
             'content'   =>  $data['content'],
-            'dlr'       =>  Env::get(SMS::WITH_DLR),
-            'dlr-url'   =>  Env::get(SMS::DLR_URL),
-            'dlr-level' =>  Env::get(SMS::DLR_LEVEL)
+            'dlr'       =>  $this->config->dlr,
+            'dlr-url'   =>  $this->config->dlr_url,
+            'dlr-level' =>  $this->config->dlr_level
         ];
     }
 }

@@ -1,8 +1,7 @@
 <?php
 
-namespace Sms\Factory\Contracts;
+namespace Sms\Contracts;
 
-use Sms\Contracts\SmsProvider;
 use Sms\Enums\Provider;
 
 interface ProviderFactory

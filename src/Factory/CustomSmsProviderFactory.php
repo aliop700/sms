@@ -2,9 +2,10 @@
 
 namespace Sms\Factory;
 
+use GuzzleHttp\Client;
+use Sms\Contracts\ProviderFactory;
 use Sms\Contracts\SmsProvider;
 use Sms\Exceptions\SmsProviderNotSupportedException;
-use Sms\Factory\Contracts\ProviderFactory;
 use Sms\Providers\D7SMSProvider;
 
 class CustomSmsProviderFactory implements ProviderFactory
@@ -23,6 +24,7 @@ class CustomSmsProviderFactory implements ProviderFactory
             throw new SmsProviderNotSupportedException("SMS provider $provider is not supported", 400);
         }
 
-        return new self::SUPPORTED_PROVIDERS[$provider];
+        $class = self::SUPPORTED_PROVIDERS[$provider];
+        return new $class(new Client());
     } 
 }
