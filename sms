@@ -2,7 +2,13 @@
 
 require_once './vendor/autoload.php';
 
-if($argv[1] == 'list')
-    (new \Sms\Commands\ListCommand())->execute([]);
-if($argv[1] == 'send')
-    (new \Sms\Commands\SendCommand())->execute([$argv[2], $argv[3], $argv[4]]);
+use Sms\Commands\ListCommand;
+use Sms\Commands\SendCommand;
+
+if($argv[1] == 'list') {
+    (new ListCommand())->execute([]);
+}
+
+if($argv[1] == 'send') {
+    (new SendCommand())->execute([$argv[2], $argv[3], $argv[4]]);
+}
